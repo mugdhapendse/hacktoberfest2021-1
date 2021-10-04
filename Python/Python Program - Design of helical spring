@@ -1,0 +1,24 @@
+P = float(input("Enter maximum weight attached:"))
+delta = float(input("Enter length of the scale:"))
+Sut= float(input("Enter ultimate tensile strength:"))
+C = float(input("Enter spring Index:"))
+G = float(input("Enter the given modulus of rigidity:"))
+#Calculating permissible shear stress
+tau = 0.5* Sut
+# Calculating Wahl's Factor and Force:
+K = (((4*C)-1)/((4*C)-4)) + (0.615/C)
+import math
+#Calculating the main parameter, wire diameter(d)
+d = ((K*8*P*C)/(3.14*tau))**0.5
+diameter = round(d)
+# Calculating Mean coil diameter(D)
+D =C*diameter
+# Calculating no. of active coils(N)
+N = (G*delta*(diameter**4))/(8*P*(D**3))
+k = P/delta
+k1 = (G*(diameter**4))/(8*(D**3)*N)
+print("Permissible shear stress:",int(tau))
+print("Wire diameter in mm is:",round(d))
+print("Mean coil diameter in mm is:",int(D))
+print("Number of active coils:",round(N))
+print("Required rate of spring:",int(k), "actual rate of spring is:",k1)
